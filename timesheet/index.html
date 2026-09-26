@@ -5,85 +5,182 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Calendar Timesheet for Google Sheets</title>
   <meta name="description" content="Turn your Google Calendar into a timesheet and per-client billing summary in Google Sheets. Built for freelancers and consultants who bill by the hour.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="home.css">
   <link rel="canonical" href="https://winghuo.github.io/timesheet/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
-<body>
-  <header>
-    <div class="wrap">
-      <a class="brand" href="./">Calendar Timesheet</a>
-      <nav><a href="#pricing">Pricing</a><a href="guides/">Guides</a><a href="#faq">FAQ</a><a href="privacy.html">Privacy</a></nav>
+<body class="home">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap wide">
+      <a class="brand" href="./"><img src="favicon.svg" alt="" width="28" height="28">Calendar Timesheet</a>
+      <nav aria-label="Main">
+        <a class="hide-sm" href="#how">How it works</a><a class="hide-xs" href="#pricing">Pricing</a><a class="hide-sm" href="guides/">Guides</a><a class="hide-sm" href="#faq">FAQ</a>
+        <a class="btn btn-sm" href="#install">Get started</a>
+      </nav>
     </div>
   </header>
 
-  <main class="wrap">
+  <main id="main">
     <section class="hero">
-      <h1>Your calendar already knows your billable hours.</h1>
-      <p>Calendar Timesheet is a Google Sheets add-on that turns your Google Calendar events into a clean timesheet and a per-client billing summary, ready to paste into an invoice. No timers, no new app.</p>
-      <a class="btn" href="#install">Get started free</a>
-      <a class="btn secondary" href="#pricing">See pricing</a>
-      <video class="promo" src="promo.mp4" poster="promo-poster.jpg" autoplay muted loop playsinline controls preload="metadata" aria-label="30-second demo: Google Calendar events turn into a timesheet and per-client billing summary"></video>
-    </section>
-
-    <section>
-      <h2>What it does</h2>
-      <div class="grid">
-        <div class="card"><h3>Match events to clients</h3><p>Write simple rules like <code>acme =&gt; Acme Corp | 120</code>, or start an event title with <code>[Client]</code>. Each event lands under the right client with the right rate.</p></div>
-        <div class="card"><h3>Bill the way you invoice</h3><p>Round to 6, 15 or 30 minutes, up or to the nearest step. All-day events and meetings you declined are skipped automatically.</p></div>
-        <div class="card"><h3>Two sheets, one click</h3><p>A detailed <b>Timesheet</b> (date, time, client, hours, amount) and a <b>Client Summary</b> with total hours and amount per client for any date range.</p></div>
+      <div class="wrap wide hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Google Sheets add-on<span class="hide-sm"> for freelancers</span></p>
+          <h1>Your calendar already knows your <span class="accent">billable hours.</span></h1>
+          <p class="lead">Turn Google Calendar events into a timesheet and a per-client bill in one click. No timers to forget, no new app to learn.</p>
+          <div class="cta-row">
+            <a class="btn btn-lg" href="#install">Get started free</a>
+            <a class="btn btn-lg btn-ghost" href="#pricing">See pricing</a>
+          </div>
+          <ul class="trust" aria-label="Highlights">
+            <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Free up to 30 events</li>
+            <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Read-only calendar access</li>
+            <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>No credit card</li>
+          </ul>
+        </div>
+        <figure class="hero-media">
+          <video id="promo" class="promo" src="promo.mp4" poster="promo-poster.jpg" muted loop playsinline controls preload="metadata" aria-describedby="promo-caption"></video>
+          <figcaption id="promo-caption">30-second demo: calendar events become timesheet rows, one rule sets each client's rate, and the per-client totals add up to the bill.</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section id="install">
-      <h2>Get started in 2 minutes</h2>
-      <ol class="steps">
-        <li>Click <b>Make a copy</b> below. You get your own Google Sheet with Calendar Timesheet built in.</li>
-        <li>In your copy, choose <b>Extensions → Calendar Timesheet → Open</b>. The first time, Google asks you to authorize the tool to read your calendar (read-only) and edit this sheet. Your copy also has a <b>Start here</b> tab with these steps.</li>
-        <li>Not sure yet? Click <b>Try with sample data</b> at the top of the panel to see a finished report first.</li>
-        <li>Pick a calendar and a date range, add your client rules, and click <b>Generate timesheet</b>.</li>
-      </ol>
-      <a class="btn" href="https://docs.google.com/spreadsheets/d/1YlCGrkeCt4-mcY1Nm9HGLcANweA7XqhFTEtyZ3CCzrg/copy" target="_blank" rel="noopener">Make a copy (free)</a>
-      <p style="color:var(--muted);font-size:14px;margin-top:12px">While our Google Workspace Marketplace listing is under review, Google may show an "unverified app" notice during authorization. Choose <b>Advanced → Go to Calendar Timesheet</b> to continue. The code runs only inside your own Google account; see the <a href="privacy.html">privacy policy</a>.</p>
+    <section class="band">
+      <div class="wrap wide">
+        <p class="band-text"><b>Timers leak billable time.</b> You forget to press start, or to press stop. Your calendar has the real record, so let it do the work.</p>
+      </div>
     </section>
 
-    <section id="pricing">
-      <h2>Pricing</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Free</h3>
-          <div class="price">$0</div>
-          <ul><li>All features</li><li>Up to 30 events per report</li></ul>
-          <a class="btn secondary" href="#install" style="margin-top:16px;margin-left:0">Make a free copy</a>
-        </div>
-        <div class="card">
-          <h3>Pro</h3>
-          <div class="price">$4 <small>/ month</small></div>
-          <p>or $29 / year</p>
-          <ul><li>Unlimited events per report</li><li>Use on up to 3 Google accounts</li><li>Email support</li></ul>
-          <a class="btn" href="https://www.creem.io/payment/prod_5P3cwuPQmNzUwCzCaTSTnL" style="margin-top:16px">Buy monthly</a>
-          <a class="btn secondary" href="https://www.creem.io/payment/prod_23967Ukve3rJoGUSoGnmI1" style="margin-top:16px">Buy yearly</a>
+    <section id="features" class="section">
+      <div class="wrap wide">
+        <h2 class="section-title">Everything you need to bill by the hour</h2>
+        <div class="features">
+          <article class="feature">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div>
+            <h3>Match events to clients</h3>
+            <p>One line per client: <code>acme =&gt; Acme Corp | 120</code>. Or start an event title with <code>[Client]</code>. Every event lands under the right client at the right rate.</p>
+          </article>
+          <article class="feature">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <h3>Bill the way you invoice</h3>
+            <p>Round to 6, 15 or 30 minutes, up or to the nearest step. All-day events and meetings you declined are skipped automatically.</p>
+          </article>
+          <article class="feature">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 10v10"/></svg></div>
+            <h3>Two sheets, one click</h3>
+            <p>A detailed <b>Timesheet</b> (date, time, client, hours, amount) and a <b>Client Summary</b> with total hours and amount per client, ready for your invoice.</p>
+          </article>
+          <article class="feature">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+            <h3>Your data stays yours</h3>
+            <p>Runs inside your own Google account with read-only calendar access. Events are never sent to or stored on our servers.</p>
+          </article>
         </div>
       </div>
-      <p style="color:var(--muted);font-size:14px;margin-top:12px">Payments are processed by our reseller and Merchant of Record, Creem. Prices exclude applicable taxes. Cancel anytime; see our <a href="terms.html#refunds">refund policy</a>.</p>
     </section>
 
-    <section id="faq">
-      <h2>FAQ</h2>
-      <div class="grid">
-        <div class="card"><h3>Do you store my calendar?</h3><p>No. Events are read inside your own Google account while the report is generated and written only to your spreadsheet. They are never sent to our servers. See the <a href="privacy.html">privacy policy</a>.</p></div>
-        <div class="card"><h3>How do I activate Pro?</h3><p>After purchase you receive a license key by email. Paste it into the add-on sidebar and click <b>Activate</b>.</p></div>
-        <div class="card"><h3>How do I cancel?</h3><p>Open the <a href="https://www.creem.io/my-orders/login" target="_blank" rel="noopener">customer portal</a> (also linked in the add-on sidebar and your receipt email), sign in with your purchase email and click <b>Cancel Subscription</b>.</p></div>
-        <div class="card"><h3>Need help?</h3><p>Email <a href="mailto:winghuo19820628@gmail.com">winghuo19820628@gmail.com</a>. We usually reply within 2 business days.</p></div>
+    <section id="how" class="section alt">
+      <div class="wrap wide" id="install">
+        <h2 class="section-title">Get started in 2 minutes</h2>
+        <ol class="steps-grid">
+          <li><span class="num" aria-hidden="true">1</span><h3>Make a copy</h3><p>You get your own Google Sheet with Calendar Timesheet built in, plus a <b>Start here</b> tab.</p></li>
+          <li><span class="num" aria-hidden="true">2</span><h3>Open the panel</h3><p><b>Extensions → Calendar Timesheet → Open</b>, then allow read-only calendar access. Not sure yet? Click <b>Try with sample data</b>.</p></li>
+          <li><span class="num" aria-hidden="true">3</span><h3>Generate</h3><p>Pick a calendar and dates, add your client rules, and click <b>Generate timesheet</b>. Done.</p></li>
+        </ol>
+        <div class="center">
+          <a class="btn btn-lg" href="https://docs.google.com/spreadsheets/d/1YlCGrkeCt4-mcY1Nm9HGLcANweA7XqhFTEtyZ3CCzrg/copy" target="_blank" rel="noopener">Make a free copy</a>
+          <p class="fine">While our Google Workspace Marketplace listing is under review, Google may show an "unverified app" notice. Choose <b>Advanced → Go to Calendar Timesheet</b> to continue. The code runs only inside your own Google account; see the <a href="privacy.html">privacy policy</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section">
+      <div class="wrap wide">
+        <h2 class="section-title">Simple pricing</h2>
+        <p class="section-sub">Start free. Upgrade when your month has more than 30 billable events.</p>
+        <div class="plans">
+          <div class="plan">
+            <h3>Free</h3>
+            <div class="price">$0</div>
+            <p class="plan-note">Forever</p>
+            <ul class="checks">
+              <li>All features</li>
+              <li>Up to 30 events per report</li>
+              <li>Sample data to try it out</li>
+            </ul>
+            <a class="btn btn-ghost btn-block" href="#install">Make a free copy</a>
+          </div>
+          <div class="plan plan-pro">
+            <span class="badge">Most popular</span>
+            <h3>Pro</h3>
+            <div class="price">$4 <small>/ month</small></div>
+            <p class="plan-note">or <b>$29 / year</b>, save $19</p>
+            <ul class="checks">
+              <li>Unlimited events per report</li>
+              <li>Use on up to 3 Google accounts</li>
+              <li>Email support</li>
+            </ul>
+            <a class="btn btn-block" href="https://www.creem.io/payment/prod_23967Ukve3rJoGUSoGnmI1">Buy yearly ($29)</a>
+            <a class="btn btn-ghost btn-block" href="https://www.creem.io/payment/prod_5P3cwuPQmNzUwCzCaTSTnL">Buy monthly ($4)</a>
+          </div>
+        </div>
+        <p class="fine center">Payments are processed by our reseller and Merchant of Record, Creem. Prices exclude applicable taxes. Cancel anytime; 14-day refund, see our <a href="terms.html#refunds">refund policy</a>.</p>
+      </div>
+    </section>
+
+    <section id="faq" class="section alt">
+      <div class="wrap">
+        <h2 class="section-title">Questions</h2>
+        <div class="faq">
+          <details><summary>Do you store my calendar?</summary><p>No. Events are read inside your own Google account while the report is generated and written only to your spreadsheet. They are never sent to our servers. See the <a href="privacy.html">privacy policy</a>.</p></details>
+          <details><summary>What does "events per report" mean?</summary><p>Each time you generate a timesheet, the free version includes up to 30 matching calendar events. Pro has no limit.</p></details>
+          <details><summary>How do I activate Pro?</summary><p>After purchase you receive a license key by email. Paste it into the add-on sidebar and click <b>Activate</b>.</p></details>
+          <details><summary>How do I cancel?</summary><p>Open the <a href="https://www.creem.io/my-orders/login" target="_blank" rel="noopener">customer portal</a> (also linked in the add-on sidebar and your receipt email), sign in with your purchase email and click <b>Cancel Subscription</b>.</p></details>
+          <details><summary>Need help?</summary><p>Email <a href="mailto:winghuo19820628@gmail.com">winghuo19820628@gmail.com</a>. We usually reply within 2 business days.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="wrap">
+        <h2>Stop rebuilding your hours at month-end.</h2>
+        <p>Your next invoice is already in your calendar.</p>
+        <a class="btn btn-lg btn-light" href="#install">Get started free</a>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="wrap">
+    <div class="wrap wide">
       <a href="guides/">Guides</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="mailto:winghuo19820628@gmail.com">Contact</a>
       <div style="margin-top:8px">© 2026 Calendar Timesheet. Google Calendar and Google Sheets are trademarks of Google LLC; this product is not affiliated with Google.</div>
     </div>
   </footer>
+
+  <script>
+    // Autoplay the muted demo only when the user allows motion, and only while it's on screen.
+    (function () {
+      var v = document.getElementById('promo');
+      if (!v || !('IntersectionObserver' in window)) return;
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+      var userPaused = false;
+      v.addEventListener('pause', function () { if (!v.dataset.auto) userPaused = true; delete v.dataset.auto; });
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting && !userPaused) {
+            var p = v.play(); if (p && p.catch) p.catch(function () {});
+          } else if (!e.isIntersecting && !v.paused) {
+            v.dataset.auto = '1'; v.pause();
+          }
+        });
+      }, { threshold: 0.35 }).observe(v);
+    })();
+  </script>
 </body>
 </html>
