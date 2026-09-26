@@ -51,3 +51,6 @@ footer { border-top: 1px solid var(--border); color: var(--muted); font-size: 14
 footer a { color: var(--muted); margin-right: 16px; }
 .legal h2 { font-size: 20px; margin-top: 28px; }
 .legal { padding-bottom: 24px; }
+pre { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+pre code { background: none; border: 0; padding: 0; }
+.legal li { margin-bottom: 6px; }

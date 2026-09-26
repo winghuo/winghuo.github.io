@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /timesheet/thanks.html
+
+Sitemap: https://winghuo.github.io/sitemap.xml

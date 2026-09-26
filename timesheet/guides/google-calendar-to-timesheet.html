@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Turn Google Calendar into a Timesheet in Google Sheets (3 Ways)</title>
+  <meta name="description" content="Three ways to export Google Calendar events to Google Sheets and total billable hours per client: manual export, an Apps Script snippet, and a one-click add-on.">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="canonical" href="https://winghuo.github.io/timesheet/guides/google-calendar-to-timesheet.html">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="../">Calendar Timesheet</a>
+      <nav><a href="../#pricing">Pricing</a><a href="../#install">Get started</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap legal">
+    <h1>How to turn Google Calendar into a timesheet in Google Sheets</h1>
+    <p>If you bill clients by the hour, your calendar probably already has most of the information you need: who you met, when, and for how long. The hard part is getting it out of Google Calendar and into a spreadsheet where you can total hours per client. Here are three ways to do it, from free and manual to fully automatic.</p>
+
+    <h2>Method 1: Export your calendar (free, manual)</h2>
+    <ol>
+      <li>In Google Calendar, open <b>Settings → Import &amp; export → Export</b>. You get a .zip with one .ics file per calendar.</li>
+      <li>The .ics format isn't a spreadsheet, so convert it with any "ICS to CSV" converter, then open the CSV in Google Sheets.</li>
+      <li>Add a column for duration: <code>=(END-START)*24</code> gives hours.</li>
+      <li>Add a "Client" column and fill it in by hand, then build a pivot table: Rows = Client, Values = SUM of hours.</li>
+    </ol>
+    <p><b>Good for:</b> a one-off report. <b>Downsides:</b> it exports your whole calendar history, time zones can shift, and you redo every step each month.</p>
+
+    <h2>Method 2: A small Apps Script (free, for the technical)</h2>
+    <p>Open a Google Sheet, choose <b>Extensions → Apps Script</b>, paste this, and run <code>exportEvents</code>:</p>
+    <pre><code>function exportEvents() {
+  var start = new Date('2026-09-01'), end = new Date('2026-10-01');
+  var events = CalendarApp.getDefaultCalendar().getEvents(start, end);
+  var rows = [['Date', 'Title', 'Hours']];
+  events.forEach(function (e) {
+    if (e.isAllDayEvent()) return;
+    rows.push([e.getStartTime(), e.getTitle(),
+      (e.getEndTime() - e.getStartTime()) / 36e5]);
+  });
+  var sheet = SpreadsheetApp.getActiveSheet();
+  sheet.clear();
+  sheet.getRange(1, 1, rows.length, 3).setValues(rows);
+}</code></pre>
+    <p>You'll still need to map events to clients (for example with <code>=IF(REGEXMATCH(B2,"(?i)acme"),"Acme","")</code>) and build a pivot table for totals. Rounding to 15-minute increments needs <code>=CEILING(C2, 0.25)</code>.</p>
+    <p><b>Good for:</b> people comfortable editing code. <b>Downsides:</b> you maintain it yourself, and declined meetings, all-day events and rates need extra logic.</p>
+
+    <h2>Method 3: Calendar Timesheet add-on (one click)</h2>
+    <p><a href="../">Calendar Timesheet</a> does all of the above inside Google Sheets:</p>
+    <ul>
+      <li>Pick a calendar and date range.</li>
+      <li>Write rules like <code>acme =&gt; Acme Corp | 120</code> (keyword → client → hourly rate), or start event titles with <code>[Client]</code>.</li>
+      <li>Click <b>Generate timesheet</b> and get a detailed Timesheet tab plus a Client Summary with hours and amount per client.</li>
+      <li>Round to 6, 15 or 30 minutes; all-day events and declined meetings are skipped automatically.</li>
+    </ul>
+    <p>It's free for up to 30 events per report; Pro ($4/month) removes the limit. Your calendar data never leaves your Google account.</p>
+    <p><a class="btn" href="../#install">Try it free</a></p>
+
+    <h2>Tips for accurate billable hours</h2>
+    <ul>
+      <li><b>Name events consistently.</b> A client keyword or a <code>[Client]</code> prefix in every work block makes matching reliable.</li>
+      <li><b>Block focus time on your calendar.</b> Deep work that isn't a meeting is still billable, so put it on the calendar.</li>
+      <li><b>Decide your rounding rule upfront</b> and state it in your contract (e.g. "billed in 15-minute increments, rounded up").</li>
+      <li><b>Review before invoicing.</b> Any automated report is only as good as your calendar.</li>
+    </ul>
+  </main>
+
+  <footer>
+    <div class="wrap"><a href="../">Home</a><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a></div>
+  </footer>
+</body>
+</html>

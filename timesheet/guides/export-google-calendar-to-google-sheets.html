@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Export Google Calendar to Google Sheets (4 Methods Compared)</title>
+  <meta name="description" content="Export Google Calendar events to Google Sheets with the built-in export, Apps Script, automation tools like Zapier, or a Sheets add-on. Pros, cons and step-by-step instructions.">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="canonical" href="https://winghuo.github.io/timesheet/guides/export-google-calendar-to-google-sheets.html">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="../">Calendar Timesheet</a>
+      <nav><a href="./">Guides</a><a href="../#install">Get started</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap legal">
+    <h1>How to export Google Calendar to Google Sheets</h1>
+    <p>Google Calendar has no "export to Sheets" button, but there are four reliable ways to get your events into a spreadsheet. Which one is right depends on whether you need a one-off export or a report you'll run every week or month.</p>
+
+    <h2>Quick comparison</h2>
+    <div style="overflow-x:auto">
+    <table style="border-collapse:collapse;width:100%;font-size:15px">
+      <tr style="text-align:left"><th style="padding:6px;border-bottom:1px solid var(--border)">Method</th><th style="padding:6px;border-bottom:1px solid var(--border)">Cost</th><th style="padding:6px;border-bottom:1px solid var(--border)">Effort</th><th style="padding:6px;border-bottom:1px solid var(--border)">Best for</th></tr>
+      <tr><td style="padding:6px">1. Built-in export (.ics)</td><td style="padding:6px">Free</td><td style="padding:6px">High, every time</td><td style="padding:6px">A one-time backup</td></tr>
+      <tr><td style="padding:6px">2. Apps Script</td><td style="padding:6px">Free</td><td style="padding:6px">Medium (copy code once)</td><td style="padding:6px">People comfortable with code</td></tr>
+      <tr><td style="padding:6px">3. Zapier / Make / IFTTT</td><td style="padding:6px">Free tier, then paid</td><td style="padding:6px">Medium</td><td style="padding:6px">Logging new events as they're created</td></tr>
+      <tr><td style="padding:6px">4. A Sheets add-on</td><td style="padding:6px">Free / paid tiers</td><td style="padding:6px">Low</td><td style="padding:6px">Recurring reports, e.g. hours per client</td></tr>
+    </table>
+    </div>
+
+    <h2>Method 1: Google Calendar's built-in export</h2>
+    <ol>
+      <li>On a computer, open Google Calendar and click the gear icon → <b>Settings</b>.</li>
+      <li>Choose <b>Import &amp; export</b> → <b>Export</b>. A .zip file downloads with one <code>.ics</code> file per calendar.</li>
+      <li>To export a single calendar instead, open <b>Settings for my calendars</b>, pick the calendar, and click <b>Export calendar</b>.</li>
+      <li>Google Sheets can't open .ics files directly. Convert the file with an "ICS to CSV" converter, then use <b>File → Import</b> in Sheets.</li>
+    </ol>
+    <p><b>Watch out for:</b> the export contains <i>all</i> events ever, recurring events may appear once with a repeat rule instead of as separate rows, and times may be in UTC.</p>
+
+    <h2>Method 2: Apps Script (free, repeatable)</h2>
+    <p>In a Google Sheet, open <b>Extensions → Apps Script</b>, paste the code below, set your dates, and click <b>Run</b>. The first run asks for permission to read your calendar.</p>
+    <pre><code>function exportCalendarToSheet() {
+  var start = new Date(2026, 8, 1);   // months are 0-based: 8 = September
+  var end = new Date(2026, 9, 1);     // exclusive
+  var cal = CalendarApp.getDefaultCalendar();
+  var rows = [['Title', 'Start', 'End', 'Hours', 'All day', 'Location']];
+  cal.getEvents(start, end).forEach(function (e) {
+    rows.push([
+      e.getTitle(),
+      e.getStartTime(),
+      e.getEndTime(),
+      e.isAllDayEvent() ? '' : (e.getEndTime() - e.getStartTime()) / 36e5,
+      e.isAllDayEvent(),
+      e.getLocation()
+    ]);
+  });
+  var sheet = SpreadsheetApp.getActiveSheet();
+  sheet.clear();
+  sheet.getRange(1, 1, rows.length, rows[0].length).setValues(rows);
+}</code></pre>
+    <p>Unlike the .ics export, recurring events come out as separate rows, one per occurrence. To use a calendar other than your main one, replace <code>getDefaultCalendar()</code> with <code>getCalendarsByName('Work')[0]</code>.</p>
+
+    <h2>Method 3: Automation tools (Zapier, Make, IFTTT)</h2>
+    <p>These services can add a row to a Google Sheet whenever a new event is created in Google Calendar ("New Event → Create Spreadsheet Row"). That's handy for keeping a running log, but it usually only captures events created <i>after</i> you set it up, and free tiers limit how many runs you get per month.</p>
+
+    <h2>Method 4: A Google Sheets add-on</h2>
+    <p>Add-ons run inside Sheets, so there's nothing to convert and no code to maintain. If your goal is a <b>timesheet or billable hours per client</b>, <a href="../">Calendar Timesheet</a> goes a step further than a raw export:</p>
+    <ul>
+      <li>Maps events to clients with rules like <code>acme =&gt; Acme Corp | 120</code> (keyword → client → hourly rate).</li>
+      <li>Rounds to 6, 15 or 30 minutes and skips all-day and declined events.</li>
+      <li>Creates a detailed <b>Timesheet</b> tab and a <b>Client Summary</b> with hours and amount per client.</li>
+    </ul>
+    <p>Free for up to 30 events per report. <a href="../#install">Try it free →</a></p>
+
+    <h2>FAQ</h2>
+    <p><b>Can I export only some events?</b> With Apps Script, filter by title, for example <code>if (e.getTitle().indexOf('Acme') === -1) return;</code> inside the loop. The add-on does this with client rules.</p>
+    <p><b>Why are my times off by a few hours?</b> Apps Script uses the script's time zone (Project Settings), while the sheet uses its own (<b>File → Settings</b>). Set both to your local time zone.</p>
+    <p><b>Can I export a shared calendar?</b> Yes, as long as you can see its event details; use <code>CalendarApp.getCalendarById('calendar-id')</code>.</p>
+
+    <p>Related: <a href="google-calendar-to-timesheet.html">How to turn Google Calendar into a timesheet</a> · <a href="billable-hours-from-google-calendar.html">Tracking billable hours with Google Calendar</a></p>
+  </main>
+
+  <footer>
+    <div class="wrap"><a href="../">Home</a><a href="./">Guides</a><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a></div>
+  </footer>
+</body>
+</html>

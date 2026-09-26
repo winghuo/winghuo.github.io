@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Track Billable Hours with Google Calendar: A Freelancer's Setup</title>
+  <meta name="description" content="A simple system for freelancers and consultants to track billable hours per client using only Google Calendar and Google Sheets: naming rules, rounding, and a monthly invoice routine.">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="canonical" href="https://winghuo.github.io/timesheet/guides/billable-hours-from-google-calendar.html">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="../">Calendar Timesheet</a>
+      <nav><a href="./">Guides</a><a href="../#install">Get started</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap legal">
+    <h1>How to track billable hours with Google Calendar</h1>
+    <p>Most freelancers already live in their calendar: client calls, work sessions, deadlines. With a few habits, that calendar becomes an accurate record of billable time, with no timer apps and no end-of-month guessing. Here's a setup that takes ten minutes.</p>
+
+    <h2>1. Put all billable work on the calendar</h2>
+    <p>Meetings are there already. The missing piece is focused work. Block it the way you'd book a meeting: "Acme – homepage copy, 9:00–11:30". If plans change, drag the block so it matches what actually happened; that's the whole "timer".</p>
+    <ul>
+      <li>Create blocks at the start of the day, then adjust them at the end of the day.</li>
+      <li>Keep non-billable time (admin, sales calls) in a separate calendar, or just leave the client name out of those events.</li>
+    </ul>
+
+    <h2>2. Use a consistent naming rule</h2>
+    <p>Reports are only as good as your event titles. Pick one rule and stick to it:</p>
+    <ul>
+      <li><b>Prefix style:</b> <code>[Acme] Weekly sync</code>, <code>[Northwind] Data cleanup</code>. The client is always the first thing in the title.</li>
+      <li><b>Keyword style:</b> always include a unique word per client, e.g. "acme" or "northwind", anywhere in the title or description.</li>
+    </ul>
+    <p>Colors are nice for scanning your week, but titles are what reporting tools can read reliably.</p>
+
+    <h2>3. Decide your rounding policy upfront</h2>
+    <p>Common options are 6-minute (0.1 h) increments, used by many law and accounting firms, or 15-minute increments. Put it in your contract ("time is billed in 15-minute increments, rounded up") so invoices never surprise a client. In Google Sheets:</p>
+    <ul>
+      <li>Round up to 15 minutes: <code>=CEILING(A2, 0.25)</code></li>
+      <li>Round to the nearest 6 minutes: <code>=MROUND(A2, 0.1)</code></li>
+    </ul>
+
+    <h2>4. Run a monthly (or weekly) billing routine</h2>
+    <ol>
+      <li>Pull the month's events into Google Sheets. See <a href="export-google-calendar-to-google-sheets.html">4 ways to export Google Calendar to Sheets</a>.</li>
+      <li>Assign each event to a client using your naming rule, apply your rounding, and multiply by the client's rate.</li>
+      <li>Total hours and amount per client with a pivot table or <code>SUMIFS</code>.</li>
+      <li>Skim the list for anything that shouldn't be billed (cancelled meetings, internal calls), then copy the totals into your invoice.</li>
+    </ol>
+
+    <h2>5. Automate the boring part</h2>
+    <p><a href="../">Calendar Timesheet</a> is a Google Sheets add-on that does step 4 in one click. You write rules like <code>acme =&gt; Acme Corp | 120</code> once; each month you pick the date range and click <b>Generate timesheet</b>. It rounds to 6, 15 or 30 minutes, skips all-day events and meetings you declined, and produces a Timesheet tab plus a Client Summary with hours and amount per client.</p>
+    <p>Your calendar data stays in your Google account. Free for up to 30 events per report; Pro is $4/month. <a href="../#install">Try it free →</a></p>
+
+    <h2>Common mistakes</h2>
+    <ul>
+      <li><b>Forgetting to update blocks.</b> A 2-hour block that really took 3 hours under-bills you. Adjust at the end of each day.</li>
+      <li><b>Billing declined or cancelled meetings.</b> Filter out events you declined; delete cancelled ones.</li>
+      <li><b>Mixed time zones.</b> If you travel, check that your calendar and spreadsheet use the same time zone before running reports.</li>
+    </ul>
+
+    <p>Related: <a href="google-calendar-to-timesheet.html">How to turn Google Calendar into a timesheet</a></p>
+  </main>
+
+  <footer>
+    <div class="wrap"><a href="../">Home</a><a href="./">Guides</a><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a></div>
+  </footer>
+</body>
+</html>
