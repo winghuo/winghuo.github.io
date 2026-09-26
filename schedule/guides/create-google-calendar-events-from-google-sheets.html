@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Create Google Calendar Events from Google Sheets (and Keep Them in Sync)</title>
+  <meta name="description" content="Bulk-create Google Calendar events from a spreadsheet with Apps Script or an add-on, and update them when the sheet changes without creating duplicates.">
+  <link rel="stylesheet" href="../../timesheet/style.css">
+  <link rel="canonical" href="https://winghuo.github.io/schedule/guides/create-google-calendar-events-from-google-sheets.html">
+  <link rel="icon" href="../icon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to create Google Calendar events from Google Sheets">
+  <meta property="og:description" content="Bulk-create calendar events from a spreadsheet, and update them without duplicates.">
+  <meta property="og:url" content="https://winghuo.github.io/schedule/guides/create-google-calendar-events-from-google-sheets.html">
+  <meta property="og:image" content="https://winghuo.github.io/og/schedule.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "How to create Google Calendar events from Google Sheets (and keep them in sync)",
+        "datePublished": "2026-09-27",
+        "dateModified": "2026-09-27",
+        "author": { "@type": "Organization", "name": "Wing Tools", "url": "https://winghuo.github.io/" },
+        "publisher": { "@type": "Organization", "name": "Wing Tools", "url": "https://winghuo.github.io/" },
+        "image": "https://winghuo.github.io/og/schedule.png",
+        "mainEntityOfPage": "https://winghuo.github.io/schedule/guides/create-google-calendar-events-from-google-sheets.html"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Schedule Sync", "item": "https://winghuo.github.io/schedule/" },
+          { "@type": "ListItem", "position": 2, "name": "Create calendar events from Google Sheets" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="../">Schedule Sync</a>
+      <nav><a href="shift-schedule-google-calendar.html">Shift schedules</a><a href="../#install">Get started</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap legal">
+    <h1>How to create Google Calendar events from Google Sheets</h1>
+    <p><b>Short answer:</b> put one event per row (Title, Date, Start, End), then either run a small Apps Script that calls <code>CalendarApp.createEvent</code> for each row, or use a Sheets add-on such as <a href="../">Schedule Sync</a>. The hard part isn't creating events once; it's updating them later without duplicates. That needs each row to remember the ID of the event it created.</p>
+
+    <h2>1. Set up the sheet</h2>
+    <p>Use one row per event and a header row like this:</p>
+    <div style="overflow-x:auto">
+    <table style="border-collapse:collapse;width:100%;font-size:15px">
+      <tr style="text-align:left"><th style="padding:6px;border-bottom:1px solid var(--border)">Title</th><th style="padding:6px;border-bottom:1px solid var(--border)">Date</th><th style="padding:6px;border-bottom:1px solid var(--border)">Start</th><th style="padding:6px;border-bottom:1px solid var(--border)">End</th><th style="padding:6px;border-bottom:1px solid var(--border)">Location</th><th style="padding:6px;border-bottom:1px solid var(--border)">Guests</th></tr>
+      <tr><td style="padding:6px">Team kickoff</td><td style="padding:6px">2026-10-05</td><td style="padding:6px">09:30</td><td style="padding:6px">10:30</td><td style="padding:6px">Room A</td><td style="padding:6px"></td></tr>
+      <tr><td style="padding:6px">Conference</td><td style="padding:6px">2026-10-07</td><td style="padding:6px"></td><td style="padding:6px"></td><td style="padding:6px">Center</td><td style="padding:6px"></td></tr>
+    </table>
+    </div>
+    <p>Leave Start empty for an all-day event. If End is earlier than Start (22:00 → 02:00), the event ends the next day.</p>
+
+    <h2>2. Option A: a simple Apps Script (creates events once)</h2>
+    <p>Open <b>Extensions → Apps Script</b>, paste this and run it. It creates events in your default calendar and writes each event's ID into column G so you can see which rows were done:</p>
+    <pre><code>function createEvents() {
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var tz = SpreadsheetApp.getActive().getSpreadsheetTimeZone();
+  var rows = sheet.getDataRange().getDisplayValues();
+  var cal = CalendarApp.getDefaultCalendar();
+  for (var i = 1; i &lt; rows.length; i++) {
+    var r = rows[i];
+    if (!r[0] || r[6]) continue;              // no title, or already created
+    var start = Utilities.parseDate(r[1] + ' ' + (r[2] || '00:00'), tz, 'yyyy-MM-dd HH:mm');
+    var ev = r[2]
+      ? cal.createEvent(r[0], start, Utilities.parseDate(r[1] + ' ' + r[3], tz, 'yyyy-MM-dd HH:mm'), { location: r[4] })
+      : cal.createAllDayEvent(r[0], start, { location: r[4] });
+    sheet.getRange(i + 1, 7).setValue(ev.getId());
+  }
+}</code></pre>
+    <p>For this script, format the Date column as <code>yyyy-mm-dd</code> and the time columns as <code>hh:mm</code> (Format → Number → Custom date and time). Schedule Sync itself accepts other common date formats.</p>
+    <p><b>Tip:</b> the script reads <code>getDisplayValues()</code> (the text you see) instead of raw values. Time-only cells are stored as moments on 30 December 1899, and converting those through a time zone can shift them by minutes or hours.</p>
+    <p><b>Limits:</b> this version doesn't update or delete events when you edit rows, and it doesn't handle overnight events. Apps Script also stops after 6 minutes, so very long sheets need batching.</p>
+
+    <h2>3. Option B: Schedule Sync (creates, updates and removes)</h2>
+    <p><a href="../">Schedule Sync</a> is a Google Sheets add-on built for keeping a sheet and a calendar in sync:</p>
+    <ul>
+      <li><b>Preview first:</b> see how many events will be created, changed and removed before anything happens.</li>
+      <li><b>Update in place:</b> each row remembers its event, so editing a time moves the same event instead of creating a duplicate.</li>
+      <li><b>Safe removal:</b> delete a row and its event is removed; events it didn't create are never touched.</li>
+      <li><b>Shift rosters:</b> a separate mode turns a staff grid with shift codes into events (<a href="shift-schedule-google-calendar.html">guide</a>).</li>
+    </ul>
+    <p>It's free for up to 50 events per schedule; Pro is $5/month. <a href="../#install">Try it free →</a></p>
+
+    <h2>Common questions</h2>
+    <p><b>Can I add guests?</b> Yes. Put email addresses in a Guests column; choose whether invitations are emailed.</p>
+    <p><b>Which calendar do events go to?</b> Any calendar you own. A separate calendar is safest, since you can hide or delete it in one step.</p>
+    <p><b>Why are my event times off by a few hours?</b> The spreadsheet's time zone (File → Settings) and your calendar's time zone differ. The moment is right; the calendar just shows it in its own zone. Make the two match.</p>
+
+    <p>Related: <a href="shift-schedule-google-calendar.html">How to put a shift schedule on Google Calendar</a> · <a href="../../timesheet/guides/export-google-calendar-to-google-sheets.html">The reverse: export Google Calendar to Google Sheets</a></p>
+  </main>
+
+  <footer>
+    <div class="wrap"><a href="../">Schedule Sync</a><a href="../../">Wing Tools</a><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a></div>
+  </footer>
+</body>
+</html>

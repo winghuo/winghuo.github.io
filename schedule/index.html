@@ -13,6 +13,62 @@
   <link rel="stylesheet" href="schedule.css">
   <link rel="canonical" href="https://winghuo.github.io/schedule/">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Wing Tools">
+  <meta property="og:title" content="Schedule Sync: Google Sheets to Google Calendar, shift rosters included">
+  <meta property="og:description" content="Turn a spreadsheet of events or a staff shift roster into Google Calendar events. Preview every change, update in place, no duplicates. Free up to 50 events; Pro $5/month.">
+  <meta property="og:url" content="https://winghuo.github.io/schedule/">
+  <meta property="og:image" content="https://winghuo.github.io/og/schedule.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Schedule Sync for Google Sheets">
+  <meta name="twitter:description" content="Spreadsheet → Google Calendar, shift rosters included. No duplicates. Free up to 50 events.">
+  <meta name="twitter:image" content="https://winghuo.github.io/og/schedule.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://winghuo.github.io/#org",
+        "name": "Wing Tools",
+        "url": "https://winghuo.github.io/",
+        "email": "winghuo19820628@gmail.com"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://winghuo.github.io/schedule/#app",
+        "name": "Schedule Sync",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "Scheduling",
+        "operatingSystem": "Web (Google Sheets add-on)",
+        "url": "https://winghuo.github.io/schedule/",
+        "image": "https://winghuo.github.io/og/schedule.png",
+        "description": "Schedule Sync is a Google Sheets add-on that creates and updates Google Calendar events from a spreadsheet: either an event list (title, date, start, end, location, guests) or a staff shift roster (names down the side, dates across the top, shift codes in the cells). It previews every change, updates events in place instead of duplicating them, and only removes events it created itself.",
+        "featureList": ["Event list and shift roster modes", "Preview of new, changed and removed events before applying", "In-place updates without duplicates", "Overnight shifts and days off", "Optional email invitations to guests or staff", "Only removes events it created"],
+        "publisher": { "@id": "https://winghuo.github.io/#org" },
+        "offers": [
+          { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD", "description": "Up to 50 events per schedule" },
+          { "@type": "Offer", "name": "Pro monthly", "price": "5", "priceCurrency": "USD", "url": "https://www.creem.io/payment/prod_6Ld2TlBaafXOfjU2Cp26H9", "description": "Unlimited events, billed monthly" },
+          { "@type": "Offer", "name": "Pro yearly", "price": "39", "priceCurrency": "USD", "url": "https://www.creem.io/payment/prod_2qRhzeci2Ig1mNj2ltwigH", "description": "Unlimited events, billed yearly" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Will it create duplicate events if I sync twice?", "acceptedAnswer": { "@type": "Answer", "text": "No. Each row (or roster cell) remembers the event it created. Syncing again only updates what changed; unchanged rows are skipped." } },
+          { "@type": "Question", "name": "Can it delete my existing calendar events?", "acceptedAnswer": { "@type": "Answer", "text": "No. It only removes events it created itself, and only after you confirm them in the preview. By default it syncs into a new, separate calendar." } },
+          { "@type": "Question", "name": "Which columns do I need?", "acceptedAnswer": { "@type": "Answer", "text": "For an event list: Title and Date, plus optional Start, End (or Duration), Location, Description and Guests. No start time means an all-day event. For a roster: names in column A, dates across row 1, and a Shift codes sheet with Code, Title, Start and End." } },
+          { "@type": "Question", "name": "What about time zones?", "acceptedAnswer": { "@type": "Answer", "text": "Times are read in the spreadsheet's time zone (File → Settings). If your calendar displays a different time zone, the preview tells you before you sync." } },
+          { "@type": "Question", "name": "Do you store my data?", "acceptedAnswer": { "@type": "Answer", "text": "No. The add-on runs inside your own Google account; your sheet and calendar data are never sent to our servers." } },
+          { "@type": "Question", "name": "Need help?", "acceptedAnswer": { "@type": "Answer", "text": "Email winghuo19820628@gmail.com. We usually reply within 2 business days." } }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="home">
   <a class="skip" href="#main">Skip to content</a>
@@ -178,7 +234,7 @@
 
   <footer>
     <div class="wrap wide">
-      <a href="../">Wing Tools</a><a href="../timesheet/">Calendar Timesheet</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="mailto:winghuo19820628@gmail.com">Contact</a>
+      <a href="guides/create-google-calendar-events-from-google-sheets.html">Sheets → Calendar guide</a><a href="guides/shift-schedule-google-calendar.html">Shift schedule guide</a><a href="../">Wing Tools</a><a href="../timesheet/">Calendar Timesheet</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="mailto:winghuo19820628@gmail.com">Contact</a>
       <div style="margin-top:8px">© 2026 Wing Tools. Google Calendar and Google Sheets are trademarks of Google LLC; this product is not affiliated with Google.</div>
     </div>
   </footer>

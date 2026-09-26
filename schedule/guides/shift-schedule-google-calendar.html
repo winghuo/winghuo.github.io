@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Put a Shift Schedule on Google Calendar (from a Google Sheets Roster)</title>
+  <meta name="description" content="Turn a staff shift roster in Google Sheets into Google Calendar events: shift codes, overnight shifts, days off, and inviting each employee.">
+  <link rel="stylesheet" href="../../timesheet/style.css">
+  <link rel="canonical" href="https://winghuo.github.io/schedule/guides/shift-schedule-google-calendar.html">
+  <link rel="icon" href="../icon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to put a shift schedule on Google Calendar">
+  <meta property="og:description" content="Turn a staff roster with shift codes into Google Calendar events, overnight shifts included.">
+  <meta property="og:url" content="https://winghuo.github.io/schedule/guides/shift-schedule-google-calendar.html">
+  <meta property="og:image" content="https://winghuo.github.io/og/schedule.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "How to put a shift schedule on Google Calendar (from a Google Sheets roster)",
+        "datePublished": "2026-09-27",
+        "dateModified": "2026-09-27",
+        "author": { "@type": "Organization", "name": "Wing Tools", "url": "https://winghuo.github.io/" },
+        "publisher": { "@type": "Organization", "name": "Wing Tools", "url": "https://winghuo.github.io/" },
+        "image": "https://winghuo.github.io/og/schedule.png",
+        "mainEntityOfPage": "https://winghuo.github.io/schedule/guides/shift-schedule-google-calendar.html"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Schedule Sync", "item": "https://winghuo.github.io/schedule/" },
+          { "@type": "ListItem", "position": 2, "name": "Shift schedule on Google Calendar" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="../">Schedule Sync</a>
+      <nav><a href="create-google-calendar-events-from-google-sheets.html">Event lists</a><a href="../#install">Get started</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap legal">
+    <h1>How to put a shift schedule on Google Calendar</h1>
+    <p><b>Short answer:</b> keep the roster in Google Sheets as a grid (staff down the side, dates across the top, a shift code like M/E/N in each cell), define what each code means in a small table, then convert every filled cell into a calendar event. <a href="../">Schedule Sync</a> does the conversion in one click and keeps the calendar updated when the roster changes.</p>
+
+    <h2>1. Lay out the roster</h2>
+    <div style="overflow-x:auto">
+    <table style="border-collapse:collapse;width:100%;font-size:15px;text-align:center">
+      <tr><th style="padding:6px;border-bottom:1px solid var(--border);text-align:left">Name</th><th style="padding:6px;border-bottom:1px solid var(--border)">Email</th><th style="padding:6px;border-bottom:1px solid var(--border)">Mon 10-05</th><th style="padding:6px;border-bottom:1px solid var(--border)">Tue 10-06</th><th style="padding:6px;border-bottom:1px solid var(--border)">Wed 10-07</th></tr>
+      <tr><td style="padding:6px;text-align:left">Alice</td><td style="padding:6px">alice@…</td><td style="padding:6px">M</td><td style="padding:6px">M</td><td style="padding:6px">E</td></tr>
+      <tr><td style="padding:6px;text-align:left">Ben</td><td style="padding:6px"></td><td style="padding:6px">E</td><td style="padding:6px">OFF</td><td style="padding:6px">N</td></tr>
+    </table>
+    </div>
+    <ul>
+      <li>Row 1 holds real dates (format them however you like, e.g. "Mon 10-05").</li>
+      <li>The Email column is optional; use it to invite each person to their own shifts.</li>
+      <li>Blank, <code>OFF</code>, <code>-</code>, <code>X</code>, <code>LEAVE</code> or <code>PTO</code> means no shift.</li>
+    </ul>
+
+    <h2>2. Define the shift codes</h2>
+    <p>In a second sheet called <b>Shift codes</b>:</p>
+    <div style="overflow-x:auto">
+    <table style="border-collapse:collapse;width:100%;font-size:15px">
+      <tr style="text-align:left"><th style="padding:6px;border-bottom:1px solid var(--border)">Code</th><th style="padding:6px;border-bottom:1px solid var(--border)">Title</th><th style="padding:6px;border-bottom:1px solid var(--border)">Start</th><th style="padding:6px;border-bottom:1px solid var(--border)">End</th></tr>
+      <tr><td style="padding:6px">M</td><td style="padding:6px">Morning shift</td><td style="padding:6px">07:00</td><td style="padding:6px">15:00</td></tr>
+      <tr><td style="padding:6px">E</td><td style="padding:6px">Evening shift</td><td style="padding:6px">15:00</td><td style="padding:6px">23:00</td></tr>
+      <tr><td style="padding:6px">N</td><td style="padding:6px">Night shift</td><td style="padding:6px">23:00</td><td style="padding:6px">07:00</td></tr>
+    </table>
+    </div>
+    <p>An end time earlier than the start (23:00 → 07:00) is an overnight shift that ends the next morning.</p>
+
+    <h2>3. Sync it to a calendar</h2>
+    <ol>
+      <li>Open <b>Extensions → Schedule Sync → Open</b> and choose the <b>Shift roster</b> tab.</li>
+      <li>Pick the Roster and Shift codes sheets, and a calendar. A new shared "Staff shifts" calendar works well: share it with the team so everyone sees the whole rota.</li>
+      <li>Optionally tick <b>Invite staff by email</b> so each person gets their own shifts on their personal calendar.</li>
+      <li>Click <b>Preview changes</b>, check the list, then <b>Apply</b>. Each shift becomes an event like "Morning shift – Alice, 07:00–15:00".</li>
+    </ol>
+
+    <h2>4. Changing the roster</h2>
+    <p>Edit cells and sync again. The preview shows exactly what changes: a swapped shift updates the existing event, a new day off removes that day's event, and new rows add events. Nothing is duplicated, and events you added to the calendar by hand are never touched.</p>
+
+    <h2>Tips for rota managers</h2>
+    <ul>
+      <li><b>One sheet per period.</b> Duplicate the roster tab for next month; each sheet syncs independently.</li>
+      <li><b>Time zones:</b> times use the spreadsheet's time zone (File → Settings). If a team member's calendar uses another zone, their calendar shows the correct moment in their own local time.</li>
+      <li><b>Free vs Pro:</b> the free plan covers up to 50 shifts per schedule, which is enough for a small team's week. <a href="../#pricing">Pro</a> ($5/month) removes the limit.</li>
+    </ul>
+
+    <p><a class="btn" href="../#install">Try Schedule Sync free</a></p>
+    <p>Related: <a href="create-google-calendar-events-from-google-sheets.html">Create Google Calendar events from Google Sheets</a> · <a href="../../timesheet/">Calendar Timesheet: turn calendar events into billable hours</a></p>
+  </main>
+
+  <footer>
+    <div class="wrap"><a href="../">Schedule Sync</a><a href="../../">Wing Tools</a><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms of Service</a></div>
+  </footer>
+</body>
+</html>

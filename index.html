@@ -3,22 +3,62 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Wing Tools</title>
-  <meta name="description" content="Small, focused productivity tools for Google Workspace.">
+  <title>Wing Tools: Google Sheets add-ons for timesheets and schedules</title>
+  <meta name="description" content="Wing Tools makes small Google Sheets add-ons: Calendar Timesheet turns Google Calendar into billable hours per client; Schedule Sync turns event lists and shift rosters into Google Calendar events.">
   <link rel="stylesheet" href="timesheet/style.css">
+  <link rel="canonical" href="https://winghuo.github.io/">
+  <link rel="icon" href="schedule/icon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Wing Tools">
+  <meta property="og:title" content="Wing Tools: small tools for Google Sheets and Calendar">
+  <meta property="og:description" content="Calendar Timesheet and Schedule Sync: Google Sheets add-ons that run inside your own Google account. Free plans available.">
+  <meta property="og:url" content="https://winghuo.github.io/">
+  <meta property="og:image" content="https://winghuo.github.io/og/studio.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://winghuo.github.io/og/studio.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://winghuo.github.io/#org",
+        "name": "Wing Tools",
+        "url": "https://winghuo.github.io/",
+        "email": "winghuo19820628@gmail.com",
+        "description": "Independent developer of Google Sheets add-ons for freelancers, consultants and small teams."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://winghuo.github.io/#site",
+        "name": "Wing Tools",
+        "url": "https://winghuo.github.io/",
+        "publisher": { "@id": "https://winghuo.github.io/#org" }
+      },
+      {
+        "@type": "ItemList",
+        "name": "Wing Tools products",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "url": "https://winghuo.github.io/timesheet/", "name": "Calendar Timesheet" },
+          { "@type": "ListItem", "position": 2, "url": "https://winghuo.github.io/schedule/", "name": "Schedule Sync" }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <header>
     <div class="wrap">
       <a class="brand" href="./">Wing Tools</a>
-      <nav><a href="mailto:winghuo19820628@gmail.com">Contact</a></nav>
+      <nav><a href="timesheet/">Calendar Timesheet</a><a href="schedule/">Schedule Sync</a></nav>
     </div>
   </header>
 
   <main class="wrap">
     <section class="hero">
-      <h1>Small tools that save you time.</h1>
-      <p>Focused productivity add-ons for Google Workspace, built by an independent developer.</p>
+      <h1>Small tools for Google Sheets and Calendar.</h1>
+      <p>Wing Tools makes focused Google Sheets add-ons for freelancers, consultants and small teams. Each one runs inside your own Google account, has a free plan, and costs a few dollars a month for unlimited use.</p>
     </section>
 
     <section>
@@ -26,20 +66,37 @@
       <div class="grid">
         <div class="card">
           <h3><a href="timesheet/">Calendar Timesheet</a></h3>
-          <p>Turn Google Calendar events into a timesheet and per-client billing summary in Google Sheets.</p>
+          <p>Turns Google Calendar events into a timesheet and a billing summary per client. Map events to clients with simple rules, round to 6, 15 or 30 minutes, and get hours and amounts in one click.</p>
+          <p style="margin-top:8px"><b>Free</b> up to 30 events per report · <b>Pro</b> $4/month or $29/year</p>
         </div>
         <div class="card">
           <h3><a href="schedule/">Schedule Sync</a></h3>
-          <p>Turn a spreadsheet of events or a staff shift roster into Google Calendar events, and keep them in sync.</p>
+          <p>Turns a spreadsheet of events or a staff shift roster into Google Calendar events, and keeps them in sync: preview every change, update in place, no duplicates.</p>
+          <p style="margin-top:8px"><b>Free</b> up to 50 events per schedule · <b>Pro</b> $5/month or $39/year</p>
         </div>
       </div>
+    </section>
+
+    <section>
+      <h2>Guides</h2>
+      <div class="grid">
+        <div class="card"><h3><a href="timesheet/guides/google-calendar-to-timesheet.html">Turn Google Calendar into a timesheet</a></h3><p>Three ways to total billable hours per client in Google Sheets.</p></div>
+        <div class="card"><h3><a href="timesheet/guides/export-google-calendar-to-google-sheets.html">Export Google Calendar to Google Sheets</a></h3><p>Four methods compared, from built-in export to add-ons.</p></div>
+        <div class="card"><h3><a href="schedule/guides/create-google-calendar-events-from-google-sheets.html">Create calendar events from Google Sheets</a></h3><p>Bulk-create and update Google Calendar events from a spreadsheet.</p></div>
+        <div class="card"><h3><a href="schedule/guides/shift-schedule-google-calendar.html">Put a shift schedule on Google Calendar</a></h3><p>Turn a staff roster with shift codes into calendar events.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Privacy first</h2>
+      <p>Our add-ons run as Google Apps Script inside your account. Your calendar and spreadsheet data are processed there and are never sent to our servers. Payments are handled by Creem, our Merchant of Record.</p>
     </section>
   </main>
 
   <footer>
     <div class="wrap">
-      <a href="timesheet/privacy.html">Privacy Policy</a><a href="timesheet/terms.html">Terms of Service</a><a href="mailto:winghuo19820628@gmail.com">Contact</a>
-      <div style="margin-top:8px">© 2026 Wing Tools</div>
+      <a href="timesheet/privacy.html">Calendar Timesheet privacy</a><a href="schedule/privacy.html">Schedule Sync privacy</a><a href="mailto:winghuo19820628@gmail.com">Contact</a>
+      <div style="margin-top:8px">© 2026 Wing Tools. Google Calendar and Google Sheets are trademarks of Google LLC; these products are not affiliated with Google.</div>
     </div>
   </footer>
 </body>

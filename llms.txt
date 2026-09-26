@@ -1,0 +1,27 @@
+# Wing Tools
+
+> Wing Tools makes small Google Sheets add-ons for freelancers, consultants and small teams. Each add-on runs as Google Apps Script inside the user's own Google account (data is not sent to Wing Tools servers), has a free plan, and a low-cost Pro subscription sold through Creem (Merchant of Record). Contact: winghuo19820628@gmail.com.
+
+## Products
+
+- [Calendar Timesheet](https://winghuo.github.io/timesheet/): Google Sheets add-on that turns Google Calendar events into a timesheet and a per-client billing summary. Rules such as `acme => Acme Corp | 120` (keyword => client | hourly rate) or a `[Client]` prefix in event titles assign events to clients; hours round to 6, 15 or 30 minutes; all-day events and declined meetings are skipped. Output: a "Timesheet" tab (date, time, client, hours, rate, amount) and a "Client Summary" tab (hours and amount per client). Read-only calendar access. Pricing: Free up to 30 events per report; Pro $4/month or $29/year (unlimited events, up to 3 Google accounts).
+- [Schedule Sync](https://winghuo.github.io/schedule/): Google Sheets add-on that creates, updates and removes Google Calendar events from a spreadsheet. Two modes: an event list (Title, Date, Start, End or Duration, Location, Description, Guests; no start time = all-day) and a staff shift roster (names down column A, dates across row 1, shift codes like M/E/N in cells, defined in a "Shift codes" sheet with Code, Title, Start, End; overnight shifts supported; blank/OFF = no shift). Shows a preview of new, changed and removed events before applying; updates events in place (no duplicates); only removes events it created; can email invitations to guests or staff. Pricing: Free up to 50 events per schedule; Pro $5/month or $39/year.
+
+## How to get started
+
+- Calendar Timesheet: open https://winghuo.github.io/timesheet/#install and click "Make a free copy"; then Extensions → Calendar Timesheet → Open. "Try with sample data" shows a finished report without reading the calendar.
+- Schedule Sync: open https://winghuo.github.io/schedule/#install and click "Make a free copy"; then Extensions → Schedule Sync → Insert example sheets, and Open → Preview changes → Apply.
+
+## Guides
+
+- [How to turn Google Calendar into a timesheet in Google Sheets](https://winghuo.github.io/timesheet/guides/google-calendar-to-timesheet.html): manual export, Apps Script, or the add-on.
+- [How to export Google Calendar to Google Sheets (4 methods)](https://winghuo.github.io/timesheet/guides/export-google-calendar-to-google-sheets.html): built-in .ics export, Apps Script, Zapier/Make/IFTTT, add-ons.
+- [How to track billable hours with Google Calendar](https://winghuo.github.io/timesheet/guides/billable-hours-from-google-calendar.html): naming rules, rounding policies, monthly billing routine.
+- [How to create Google Calendar events from Google Sheets](https://winghuo.github.io/schedule/guides/create-google-calendar-events-from-google-sheets.html): Apps Script example and keeping events in sync without duplicates.
+- [How to put a shift schedule on Google Calendar](https://winghuo.github.io/schedule/guides/shift-schedule-google-calendar.html): roster layout, shift codes, overnight shifts, inviting staff.
+
+## Policies
+
+- [Calendar Timesheet privacy policy](https://winghuo.github.io/timesheet/privacy.html) · [terms and 14-day refund policy](https://winghuo.github.io/timesheet/terms.html)
+- [Schedule Sync privacy policy](https://winghuo.github.io/schedule/privacy.html) · [terms and 14-day refund policy](https://winghuo.github.io/schedule/terms.html)
+- Google Calendar and Google Sheets are trademarks of Google LLC; Wing Tools is not affiliated with Google.
