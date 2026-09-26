@@ -54,3 +54,4 @@ footer a { color: var(--muted); margin-right: 16px; }
 pre { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
 pre code { background: none; border: 0; padding: 0; }
 .legal li { margin-bottom: 6px; }
+.promo { display: block; width: 100%; aspect-ratio: 16 / 9; margin-top: 32px; border: 1px solid var(--border); border-radius: 12px; background: var(--card); }
