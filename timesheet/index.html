@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calendar Timesheet for Google Sheets</title>
+  <meta name="description" content="Turn your Google Calendar into a timesheet and per-client billing summary in Google Sheets. Built for freelancers and consultants who bill by the hour.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="./">Calendar Timesheet</a>
+      <nav><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="privacy.html">Privacy</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Your calendar already knows your billable hours.</h1>
+      <p>Calendar Timesheet is a Google Sheets add-on that turns your Google Calendar events into a clean timesheet and a per-client billing summary, ready to paste into an invoice. No timers, no new app.</p>
+      <a class="btn" href="#install">Get started free</a>
+      <a class="btn secondary" href="#pricing">See pricing</a>
+    </section>
+
+    <section>
+      <h2>What it does</h2>
+      <div class="grid">
+        <div class="card"><h3>Match events to clients</h3><p>Write simple rules like <code>acme =&gt; Acme Corp | 120</code>, or start an event title with <code>[Client]</code>. Each event lands under the right client with the right rate.</p></div>
+        <div class="card"><h3>Bill the way you invoice</h3><p>Round to 6, 15 or 30 minutes, up or to the nearest step. All-day events and meetings you declined are skipped automatically.</p></div>
+        <div class="card"><h3>Two sheets, one click</h3><p>A detailed <b>Timesheet</b> (date, time, client, hours, amount) and a <b>Client Summary</b> with total hours and amount per client for any date range.</p></div>
+      </div>
+    </section>
+
+    <section id="install">
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li>Install Calendar Timesheet from the Google Workspace Marketplace.</li>
+        <li>Open any Google Sheet and choose <b>Extensions → Calendar Timesheet → Open</b>.</li>
+        <li>Pick a calendar and a date range, add your client rules, and click <b>Generate timesheet</b>.</li>
+      </ol>
+    </section>
+
+    <section id="pricing">
+      <h2>Pricing</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Free</h3>
+          <div class="price">$0</div>
+          <ul><li>All features</li><li>Up to 30 events per report</li></ul>
+        </div>
+        <div class="card">
+          <h3>Pro</h3>
+          <div class="price">$4 <small>/ month</small></div>
+          <p>or $29 / year</p>
+          <ul><li>Unlimited events per report</li><li>Use on up to 3 Google accounts</li><li>Email support</li></ul>
+        </div>
+      </div>
+      <p style="color:var(--muted);font-size:14px;margin-top:12px">Payments are processed by our reseller and Merchant of Record, Creem. Prices exclude applicable taxes. Cancel anytime; see our <a href="terms.html#refunds">refund policy</a>.</p>
+    </section>
+
+    <section id="faq">
+      <h2>FAQ</h2>
+      <div class="grid">
+        <div class="card"><h3>Do you store my calendar?</h3><p>No. Events are read inside your own Google account while the report is generated and written only to your spreadsheet. They are never sent to our servers. See the <a href="privacy.html">privacy policy</a>.</p></div>
+        <div class="card"><h3>How do I activate Pro?</h3><p>After purchase you receive a license key by email. Paste it into the add-on sidebar and click <b>Activate</b>.</p></div>
+        <div class="card"><h3>Need help?</h3><p>Email <a href="mailto:winghuo19820628@gmail.com">winghuo19820628@gmail.com</a>. We usually reply within 2 business days.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="mailto:winghuo19820628@gmail.com">Contact</a>
+      <div style="margin-top:8px">© 2026 Calendar Timesheet. Google Calendar and Google Sheets are trademarks of Google LLC; this product is not affiliated with Google.</div>
+    </div>
+  </footer>
+</body>
+</html>

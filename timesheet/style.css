@@ -1,0 +1,53 @@
+:root {
+  --bg: #ffffff;
+  --fg: #1f2328;
+  --muted: #59636e;
+  --accent: #1a73e8;
+  --accent-fg: #ffffff;
+  --card: #f6f8fa;
+  --border: #d1d9e0;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1117;
+    --fg: #e6edf3;
+    --muted: #9198a1;
+    --accent: #4c9aff;
+    --accent-fg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+header { border-bottom: 1px solid var(--border); }
+header .wrap { display: flex; justify-content: space-between; align-items: center; height: 60px; }
+header a.brand { font-weight: 700; color: var(--fg); text-decoration: none; }
+nav a { color: var(--muted); text-decoration: none; margin-left: 16px; font-size: 14px; }
+a { color: var(--accent); }
+.hero { padding: 64px 0 40px; }
+.hero h1 { font-size: clamp(28px, 5vw, 44px); line-height: 1.15; margin: 0 0 16px; }
+.hero p { font-size: 18px; color: var(--muted); max-width: 640px; }
+.btn { display: inline-block; background: var(--accent); color: var(--accent-fg); padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 600; margin-top: 8px; }
+.btn.secondary { background: transparent; color: var(--accent); border: 1px solid var(--border); margin-left: 8px; }
+section { padding: 32px 0; }
+h2 { font-size: 24px; margin: 0 0 16px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+.card h3 { margin: 0 0 8px; font-size: 17px; }
+.card p, .card li { color: var(--muted); margin: 0; }
+.card ul { padding-left: 18px; margin: 8px 0 0; }
+.price { font-size: 32px; font-weight: 700; }
+.price small { font-size: 15px; color: var(--muted); font-weight: 400; }
+ol.steps li { margin-bottom: 8px; }
+code { background: var(--card); border: 1px solid var(--border); padding: 1px 5px; border-radius: 4px; font-size: 14px; }
+footer { border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; padding: 24px 0 40px; margin-top: 32px; }
+footer a { color: var(--muted); margin-right: 16px; }
+.legal h2 { font-size: 20px; margin-top: 28px; }
+.legal { padding-bottom: 24px; }
