@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schedule Sync: Google Sheets to Google Calendar, Shift Rosters Included</title>
+  <meta name="description" content="Turn a spreadsheet into Google Calendar events: event lists and staff shift rosters. Preview every change, update in place, never duplicate. Free for up to 50 events.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../timesheet/style.css">
+  <link rel="stylesheet" href="../timesheet/home.css">
+  <link rel="stylesheet" href="schedule.css">
+  <link rel="canonical" href="https://winghuo.github.io/schedule/">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+</head>
+<body class="home">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap wide">
+      <a class="brand" href="./"><img src="icon.svg" alt="" width="28" height="28">Schedule Sync</a>
+      <nav aria-label="Main">
+        <a class="hide-sm" href="#how">How it works</a><a class="hide-xs" href="#pricing">Pricing</a><a class="hide-sm" href="#faq">FAQ</a>
+        <a class="btn btn-sm" href="#install">Get started</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap wide hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Google Sheets add-on<span class="hide-sm"> for schedules and shifts</span></p>
+          <h1>Your schedule in a sheet. <span class="accent">On everyone's calendar.</span></h1>
+          <p class="lead">Turn a spreadsheet of events or a staff shift roster into Google Calendar events. Edit the sheet, sync again, and only what changed is updated. No duplicates, ever.</p>
+          <div class="cta-row">
+            <a class="btn btn-lg" href="#install">Get started free</a>
+            <a class="btn btn-lg btn-ghost" href="#how">See how it works</a>
+          </div>
+          <ul class="trust" aria-label="Highlights">
+            <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Preview before anything changes</li>
+            <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Free up to 50 events</li>
+            <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Never touches your other events</li>
+          </ul>
+        </div>
+
+        <figure class="hero-media demo" aria-label="Example: a shift roster becomes calendar events">
+          <div class="demo-sheet">
+            <div class="demo-title">Roster</div>
+            <table>
+              <thead><tr><th>Name</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th></tr></thead>
+              <tbody>
+                <tr><td>Alice</td><td class="m">M</td><td class="m">M</td><td class="e">E</td><td class="off">OFF</td></tr>
+                <tr><td>Ben</td><td class="e">E</td><td class="e">E</td><td class="m">M</td><td class="m">M</td></tr>
+                <tr><td>Chen</td><td class="n">N</td><td class="off">OFF</td><td class="off">OFF</td><td class="e">E</td></tr>
+              </tbody>
+            </table>
+            <div class="demo-codes"><span class="m">M 07–15</span><span class="e">E 15–23</span><span class="n">N 23–07</span></div>
+          </div>
+          <div class="demo-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          <div class="demo-cal">
+            <div class="demo-title">Calendar · Mon</div>
+            <div class="ev m"><b>Morning shift – Alice</b><span>07:00 – 15:00</span></div>
+            <div class="ev e"><b>Evening shift – Ben</b><span>15:00 – 23:00</span></div>
+            <div class="ev n"><b>Night shift – Chen</b><span>23:00 – 07:00 (+1)</span></div>
+          </div>
+          <figcaption>A roster with shift codes becomes one calendar event per shift, including overnight shifts.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap wide">
+        <p class="band-text"><b>Copying schedules into a calendar by hand doesn't scale.</b> And most sync tools duplicate events or break when you edit the sheet.</p>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="wrap wide">
+        <h2 class="section-title">Built to stay in sync</h2>
+        <div class="features">
+          <article class="feature">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <h3>Preview every change</h3>
+            <p>See exactly what will be created, changed and removed before your calendar is touched. Then click Apply.</p>
+          </article>
+          <article class="feature">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></div>
+            <h3>Update in place</h3>
+            <p>Each row remembers its event. Change a time or a shift and sync again: the same event moves. No duplicates.</p>
+          </article>
+          <article class="feature">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 4v16M13 4v16"/></svg></div>
+            <h3>Shift rosters</h3>
+            <p>Names down the side, dates across the top, a shift code in each cell. Overnight shifts, days off and staff invites are handled.</p>
+          </article>
+          <article class="feature">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/></svg></div>
+            <h3>Safe by design</h3>
+            <p>Only removes events it created itself. Syncs into a separate calendar by default, so your own events stay untouched.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section alt">
+      <div class="wrap wide" id="install">
+        <h2 class="section-title">Get started in 2 minutes</h2>
+        <ol class="steps-grid">
+          <li><span class="num" aria-hidden="true">1</span><h3>Make a copy</h3><p>Your own Google Sheet with Schedule Sync built in. Use <b>Insert example sheets</b> to start from a sample event list or roster.</p></li>
+          <li><span class="num" aria-hidden="true">2</span><h3>Preview</h3><p><b>Extensions → Schedule Sync → Open</b>, pick Event list or Shift roster, choose a calendar, and click <b>Preview changes</b>.</p></li>
+          <li><span class="num" aria-hidden="true">3</span><h3>Apply</h3><p>Click <b>Apply</b>. Edit the sheet any time and sync again; only what changed is updated.</p></li>
+        </ol>
+        <div class="center">
+          <a class="btn btn-lg" href="https://docs.google.com/spreadsheets/d/1TnMOonkzKG_lF6cCbMjmFTGs2od8mXjY9_CEztVjOjE/copy" target="_blank" rel="noopener">Make a free copy</a>
+          <p class="fine">While our Google Workspace Marketplace listing is under review, Google may show an "unverified app" notice. Choose <b>Advanced → Go to Schedule Sync</b> to continue. The code runs only inside your own Google account; see the <a href="privacy.html">privacy policy</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section">
+      <div class="wrap wide">
+        <h2 class="section-title">Simple pricing</h2>
+        <p class="section-sub">Start free. Upgrade when your schedule has more than 50 events.</p>
+        <div class="plans">
+          <div class="plan">
+            <h3>Free</h3>
+            <div class="price">$0</div>
+            <p class="plan-note">Forever</p>
+            <ul class="checks">
+              <li>Event lists and shift rosters</li>
+              <li>Up to 50 events per schedule</li>
+              <li>Preview, update and remove</li>
+            </ul>
+            <a class="btn btn-ghost btn-block" href="#install">Make a free copy</a>
+          </div>
+          <div class="plan plan-pro">
+            <span class="badge">Coming soon</span>
+            <h3>Pro</h3>
+            <div class="price">$5 <small>/ month</small></div>
+            <p class="plan-note">or <b>$39 / year</b></p>
+            <ul class="checks">
+              <li>Unlimited events per schedule</li>
+              <li>Use on up to 3 Google accounts</li>
+              <li>Email support</li>
+            </ul>
+            <p class="fine" style="margin:8px 0 0">Pro checkout opens shortly. Start free today; your schedules carry over.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section alt">
+      <div class="wrap">
+        <h2 class="section-title">Questions</h2>
+        <div class="faq">
+          <details><summary>Will it create duplicate events if I sync twice?</summary><p>No. Each row (or roster cell) remembers the event it created. Syncing again only updates what changed; unchanged rows are skipped.</p></details>
+          <details><summary>Can it delete my existing calendar events?</summary><p>No. It only removes events it created itself, and only after you confirm them in the preview. By default it syncs into a new, separate calendar.</p></details>
+          <details><summary>Which columns do I need?</summary><p>For an event list: <b>Title</b> and <b>Date</b>, plus optional Start, End (or Duration), Location, Description and Guests. No start time means an all-day event. For a roster: names in column A, dates across row 1, and a Shift codes sheet with Code, Title, Start and End.</p></details>
+          <details><summary>What about time zones?</summary><p>Times are read in the spreadsheet's time zone (File → Settings). If your calendar displays a different time zone, the preview tells you before you sync.</p></details>
+          <details><summary>Do you store my data?</summary><p>No. The add-on runs inside your own Google account; your sheet and calendar data are never sent to our servers. See the <a href="privacy.html">privacy policy</a>.</p></details>
+          <details><summary>Need help?</summary><p>Email <a href="mailto:winghuo19820628@gmail.com">winghuo19820628@gmail.com</a>. We usually reply within 2 business days.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="wrap">
+        <h2>Stop copying shifts into calendars by hand.</h2>
+        <p>Keep the schedule in a sheet. Let the calendar follow.</p>
+        <a class="btn btn-lg btn-light" href="#install">Get started free</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap wide">
+      <a href="../">Wing Tools</a><a href="../timesheet/">Calendar Timesheet</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="mailto:winghuo19820628@gmail.com">Contact</a>
+      <div style="margin-top:8px">© 2026 Wing Tools. Google Calendar and Google Sheets are trademarks of Google LLC; this product is not affiliated with Google.</div>
+    </div>
+  </footer>
+</body>
+</html>

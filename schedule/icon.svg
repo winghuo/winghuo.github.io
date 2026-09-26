@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Grid page with a sync arrow: "sheet → calendar, kept in sync" -->
+  <rect x="8" y="16" width="112" height="104" rx="18" fill="#188038"/>
+  <rect x="8" y="16" width="112" height="30" rx="18" fill="#0f6b2c"/>
+  <rect x="8" y="34" width="112" height="12" fill="#0f6b2c"/>
+  <rect x="32" y="6" width="10" height="22" rx="5" fill="#0f6b2c"/>
+  <rect x="86" y="6" width="10" height="22" rx="5" fill="#0f6b2c"/>
+  <rect x="20" y="56" width="88" height="54" rx="8" fill="#ffffff"/>
+  <g fill="#ceead6">
+    <rect x="28" y="64" width="16" height="10" rx="2"/><rect x="48" y="64" width="16" height="10" rx="2"/>
+    <rect x="28" y="80" width="16" height="10" rx="2"/><rect x="48" y="80" width="16" height="10" rx="2"/>
+    <rect x="28" y="96" width="16" height="8" rx="2"/>
+  </g>
+  <circle cx="86" cy="84" r="17" fill="#1a73e8"/>
+  <g fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M78 81a9 9 0 0 1 15-4"/><path d="M94 71v6h-6"/>
+    <path d="M94 87a9 9 0 0 1-15 4"/><path d="M78 97v-6h6"/>
+  </g>
+</svg>

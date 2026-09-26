@@ -1,0 +1,34 @@
+/* Schedule Sync page: the roster → calendar demo in the hero. */
+.demo { display: grid; grid-template-columns: 1fr; gap: 12px; align-items: center; }
+.demo-sheet, .demo-cal { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow); }
+.demo-title { font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 8px; }
+.demo table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+.demo th, .demo td { border: 1px solid var(--border); padding: 6px 8px; text-align: center; }
+.demo th { background: var(--card); font-weight: 600; }
+.demo td:first-child, .demo th:first-child { text-align: left; }
+.demo .m { color: #1a73e8; font-weight: 700; }
+.demo .e { color: #b06000; font-weight: 700; }
+.demo .n { color: #6f42c1; font-weight: 700; }
+.demo .off { color: var(--muted); }
+.demo-codes { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; font-size: 12px; }
+.demo-codes span { border: 1px solid var(--border); border-radius: 999px; padding: 2px 8px; }
+.demo-arrow { display: grid; place-items: center; }
+.demo-arrow svg { width: 28px; height: 28px; fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; transform: rotate(90deg); }
+.demo .ev { border-left: 4px solid currentColor; border-radius: 8px; padding: 8px 10px; margin-bottom: 8px; display: flex; flex-direction: column; font-weight: 400; }
+.demo .ev b { color: var(--fg); font-size: 14px; }
+.demo .ev span { color: var(--muted); font-size: 13px; }
+.demo .ev.m { background: #e8f0fe; }
+.demo .ev.e { background: #fef3e2; }
+.demo .ev.n { background: #f1eafa; }
+.demo figcaption { grid-column: 1 / -1; }
+@media (prefers-color-scheme: dark) {
+  .demo .ev.m { background: #10243f; }
+  .demo .ev.e { background: #3a2a10; }
+  .demo .ev.n { background: #2a1f3d; }
+  .demo .e { color: #f0b35a; }
+  .demo .n { color: #b89cf0; }
+}
+@media (min-width: 560px) {
+  .demo { grid-template-columns: 1.15fr auto 1fr; }
+  .demo-arrow svg { transform: none; }
+}
